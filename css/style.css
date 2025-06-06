@@ -1,0 +1,416 @@
+body {
+  min-height: 100vh;
+  background: #111;
+  color: #eee;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.main-nav {
+  background: rgba(20, 20, 20, 0.95);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  min-height: 64px;
+}
+
+.container.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: gold;
+  text-decoration: none;
+  gap: 0.5rem;
+  min-height: 40px;
+}
+
+.nav-logo-img {
+  height: 1.7em;
+  width: auto;
+  margin-right: 0.2em;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.nav-logo-text {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  margin-left: 0.2em;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.nav-menu a {
+  font-size: 1.08rem;
+  margin-left: 0;
+  color: #ccc;
+  text-decoration: none;
+  padding: 0.2em 0.7em;
+  border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.nav-menu a:hover {
+  color: gold;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.hero {
+  text-align: center;
+  padding: 5rem 1rem;
+  position: relative;
+  background: url('../images/baze.png') center center/cover no-repeat;
+  min-height: 600px;
+  z-index: 1;
+}
+
+.hero::before {
+  display: none;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 2rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.hero h1 {
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.hero p {
+  margin-bottom: 2rem;
+  color: #eee;
+}
+
+.hero-buttons .btn {
+  margin: 1rem;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: gold;
+  color: #111;
+}
+
+.btn-outline {
+  border: 2px solid gold;
+  color: gold;
+  background: transparent;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #1a1a1a;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.footer-logo-wrap {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.2rem;
+  z-index: 2;
+}
+
+.footer-logo {
+  width: 38px;
+  height: auto;
+  opacity: 0.85;
+}
+
+.footer-logo-text {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: inherit;
+  margin-left: 0.2em;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  display: inline;
+}
+
+.order-form {
+  max-width: 600px;
+  margin: auto;
+  background: #222;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #000;
+}
+
+.order-form label {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 1.5rem;
+}
+
+.order-form input,
+.order-form select,
+.order-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.6rem;
+  border-radius: 5px;
+  border: none;
+  background: #333;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.order-form button.btn {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 1.2rem;
+  font-size: 1.08rem;
+}
+
+.order-form span {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.gallery img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #000;
+  object-fit: cover;
+}
+
+.nav-logo:hover {
+  color: white;
+}
+
+.gallery figure {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 0 2.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery figcaption {
+  margin-top: 1.2rem;
+  font-size: 1.35rem;
+  color: #ffd700;
+  font-weight: 600;
+  text-align: center;
+}
+
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main.container {
+  flex: 1 0 auto;
+}
+
+.services-description, .services-list, .advantages-list, .contact-call {
+  all: unset;
+}
+
+.hero .info-block {
+  max-width: 800px;
+  margin: 2rem auto;
+  text-align: left;
+  padding: 2rem 2.5rem;
+  border-radius: 10px;
+  color: #eee;
+  background: none;
+  position: relative;
+  z-index: 1;
+}
+
+.hero .info-block h2 {
+  color: gold;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.hero .info-block h3 {
+  color: gold;
+  margin: 1.5rem 0 1rem;
+  font-size: 1.3rem;
+}
+
+.hero .info-block p {
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+}
+
+.hero .info-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.hero .info-block li {
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+}
+
+.hero .info-block .contact-call {
+  font-size: 1.2rem;
+  color: gold;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.history-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0 1rem 0;
+}
+
+.history-img {
+  max-width: 600px;
+  width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  margin-bottom: 0.7rem;
+}
+
+.history-caption {
+  color: #aaa;
+  font-size: 1.05rem;
+  font-style: italic;
+  text-align: center;
+}
+
+.grave-details {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2.5rem;
+  margin: 3rem 0 2rem 0;
+  flex-wrap: wrap;
+}
+
+.grave-details-img {
+  max-width: 420px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  margin-bottom: 1.5rem;
+}
+
+.grave-details-text {
+  max-width: 500px;
+  min-width: 260px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(30,30,30,0.92);
+  border-radius: 12px;
+  padding: 1.5rem 1.5rem 1.5rem 2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+}
+
+.grave-details-text h1 {
+  font-size: 2.1rem;
+  margin-bottom: 1.2rem;
+}
+
+.grave-link img {
+  transition: box-shadow 0.3s;
+  cursor: pointer;
+}
+.grave-link img:hover {
+  box-shadow: 0 0 24px 4px gold;
+}
+
+.gallery figure img[src*="wreaths"] {
+  max-width: 300px;
+}
+
+body.grave5 .grave-details-img,
+body.grave4 .grave-details-img {
+  max-width: 520px;
+  min-width: 320px;
+}
+
+.gallery img[src*="grave5.jpg"],
+.gallery img[src*="grave2.png"] {
+  max-width: 320px;
+  height: auto;
+  border-radius: 8px;
+}
+
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Заказ услуги</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <!-- Навигация -->
+  <nav class="main-nav">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="nav-logo"><img src="images/logo.svg" alt="Логотип" class="nav-logo-img"> Спокойствие</a>
+      <div class="nav-menu">
+        <a href="gallery.html">Надгробия</a>
+        <a href="wreaths.html">Венки</a>
+        <a href="contacts.html">Контакты</a>
+        <a href="cemeteries.html">Кладбища</a>
+        <a href="order.html">Заказ</a>
+        <a href="prayers/prayers.html">Молитвы</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Оформление заказа</h1>
+    <form id="orderForm" class="order-form" action="https://formsubmit.co/ajax/swaworkatel@gmail.com" method="POST" autocomplete="off">
+      <input type="hidden" name="_subject" value="Новая заявка с сайта Спокойствие">
+      <input type="hidden" name="_template" value="table">
+      <label>
+        <span>ФИО:</span>
+        <input type="text" name="name" placeholder="Иванов Иван" required>
+      </label>
+      <label>
+        <span>Услуга:</span>
+        <select name="service" required>
+          <option disabled selected>Выберите услугу</option>
+          <option>Похороны</option>
+          <option>Кремация</option>
+          <option>Установка памятника</option>
+        </select>
+      </label>
+      <label>
+        <span>Телефон:</span>
+        <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+      </label>
+      <label>
+        <span>Комментарий:</span>
+        <textarea name="comment" placeholder="Дополнительная информация..."></textarea>
+      </label>
+      <button type="submit" class="btn btn-primary">Отправить заявку</button>
+    </form>
+  </main>
+
+  <footer>
+    <div class="footer-logo-wrap">
+      <img src="images/logo.svg" alt="Логотип" class="footer-logo">
+    </div>
+    © 2025 Спокойствие
+  </footer>
+
+  <script src="js/particles.min.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    particlesJS.load('particles-js', 'js/particles-config.json');
+  </script>
+  <script>
+    const form = document.getElementById('orderForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        })
+        .then(response => {
+          if (response.ok) {
+            alert('Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
+            form.reset();
+          } else {
+            alert('Ошибка при отправке. Попробуйте позже или свяжитесь по телефону.');
+          }
+        })
+        .catch(() => {
+          alert('Ошибка при отправке. Попробуйте позже или свяжитесь по телефону.');
+        });
+      });
+    }
+  </script>
+</body>
+</html>

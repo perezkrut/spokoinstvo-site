@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Контакты</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .contacts-layout {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 3rem;
+      margin-bottom: 0;
+    }
+    .contacts-info {
+      flex: 1 1 220px;
+      min-width: 220px;
+      max-width: 340px;
+      margin-top: 0;
+    }
+    .slider-block {
+      flex: 2 1 900px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 900px;
+      min-width: 340px;
+      width: 100%;
+      margin-top: 0;
+    }
+    .slider-container {
+      width: 100%;
+      height: 520px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      box-shadow: 0 2px 28px rgba(0,0,0,0.22);
+      background: #222;
+      margin-bottom: 1.1rem;
+    }
+    .slider-track {
+      display: flex;
+      transition: transform 0.5s;
+      width: 100%;
+      height: 100%;
+    }
+    .slider-image {
+      min-width: 100%;
+      height: 520px;
+      object-fit: cover;
+      background: #111;
+      user-select: none;
+    }
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(20,20,20,0.7);
+      color: gold;
+      border: none;
+      font-size: 1.3rem;
+      padding: 0 0.5rem;
+      cursor: pointer;
+      z-index: 2;
+      border-radius: 50%;
+      transition: background 0.2s;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slider-btn svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+      fill: gold;
+    }
+    .slider-btn:hover {
+      background: rgba(20,20,20,0.95);
+    }
+    .slider-btn.left { left: 14px; }
+    .slider-btn.right { right: 14px; }
+    .slider-dots {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 16px;
+    }
+    .slider-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #888;
+      opacity: 0.6;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .slider-dot.active {
+      background: gold;
+      opacity: 1;
+    }
+    .contact-link {
+      color: gold;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .copied-msg {
+      color: #fff;
+      background: #222;
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 0.95em;
+      margin-left: 8px;
+      display: none;
+      position: relative;
+      top: -2px;
+    }
+    .copied-msg.active {
+      display: inline;
+    }
+    .slider-address {
+      margin-top: 0.5rem;
+      font-size: 1.18rem;
+      color: #ffe066;
+      text-align: center;
+      font-weight: 600;
+      width: 100%;
+    }
+    @media (max-width: 1300px) {
+      .slider-block { max-width: 100%; width: 100%; }
+      .slider-container { height: 340px; }
+      .slider-image { height: 340px; }
+    }
+    @media (max-width: 900px) {
+      .contacts-layout { flex-direction: column; align-items: stretch; }
+      .slider-block { align-items: stretch; margin-top: 2rem; }
+      .slider-container { max-width: 100%; width: 100%; height: 180px; }
+      .slider-image { height: 180px; }
+      .slider-address { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  
+  <nav class="main-nav">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="nav-logo"><img src="images/logo.svg" alt="Логотип" class="nav-logo-img"> Спокойствие</a>
+      <div class="nav-menu">
+        <a href="gallery.html">Надгробия</a>
+        <a href="wreaths.html">Венки</a>
+        <a href="contacts.html">Контакты</a>
+        <a href="cemeteries.html">Кладбища</a>
+        <a href="order.html">Заказ</a>
+        <a href="prayers/prayers.html">Молитвы</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Контакты</h1>
+    <div class="contacts-layout">
+      <div class="contacts-info">
+        <p>Телефон: <a href="tel:+78121234567" class="contact-link">+7 (812) 123-45-67</a></p>
+        <p>Email: <span class="contact-link" id="emailCopy">swaworkatel@gmail.com</span><span class="copied-msg" id="copiedMsg">Скопировано!</span></p>
+      </div>
+    </div>
+    <div class="slider-block">
+      <div class="slider-container">
+        <button class="slider-btn left" id="sliderPrev" aria-label="Назад">
+          <svg viewBox="0 0 24 24"><path d="M15.5 19.5L9 12l6.5-7.5"/></svg>
+        </button>
+        <div class="slider-track" id="sliderTrack">
+          <img src="images/tore1.jpg" alt="Фото 1" class="slider-image">
+          <img src="images/tore2.jpg" alt="Фото 2" class="slider-image">
+        </div>
+        <button class="slider-btn right" id="sliderNext" aria-label="Вперёд">
+          <svg viewBox="0 0 24 24"><path d="M8.5 4.5L15 12l-6.5 7.5"/></svg>
+        </button>
+        <div class="slider-dots" id="sliderDots"></div>
+      </div>
+      <div class="slider-address">Адрес: Санкт-Петербург, ул. Покойная, д. 1</div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-logo-wrap">
+      <img src="images/logo.svg" alt="Логотип" class="footer-logo">
+    </div>
+    © 2025 Спокойствие
+  </footer>
+
+  <script src="js/particles.min.js"></script>
+  <script>
+    particlesJS.load('particles-js', 'js/particles-config.json');
+  </script>
+  <script>
+    // Email copy
+    const email = document.getElementById('emailCopy');
+    const copiedMsg = document.getElementById('copiedMsg');
+    email.addEventListener('click', function() {
+      navigator.clipboard.writeText(email.textContent).then(() => {
+        copiedMsg.classList.add('active');
+        setTimeout(() => copiedMsg.classList.remove('active'), 1200);
+      });
+    });
+
+    // Slider logic
+    const track = document.getElementById('sliderTrack');
+    const images = track.querySelectorAll('.slider-image');
+    const prevBtn = document.getElementById('sliderPrev');
+    const nextBtn = document.getElementById('sliderNext');
+    const dotsContainer = document.getElementById('sliderDots');
+    let current = 0;
+    function updateSlider() {
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dotsContainer.querySelectorAll('.slider-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === current);
+      });
+    }
+    function goTo(idx) {
+      current = (idx + images.length) % images.length;
+      updateSlider();
+    }
+    prevBtn.onclick = () => goTo(current - 1);
+    nextBtn.onclick = () => goTo(current + 1);
+    // Dots
+    images.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goTo(i);
+      dotsContainer.appendChild(dot);
+    });
+    updateSlider();
+  </script>
+</body>
+</html>

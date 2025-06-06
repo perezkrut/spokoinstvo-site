@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Кладбища</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .cemetery-section {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 3rem;
+      margin-bottom: 3.5rem;
+      margin-top: 2.5rem;
+    }
+    .cemetery-desc {
+      flex: 1 1 320px;
+      min-width: 260px;
+      max-width: 420px;
+      font-size: 1.13rem;
+      color: #eee;
+      line-height: 1.6;
+      background: rgba(30,30,30,0.92);
+      border-radius: 12px;
+      padding: 1.5rem 1.5rem 1.5rem 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+    }
+    .cemetery-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: gold;
+      margin-bottom: 1.1rem;
+    }
+    .cemetery-slider-block {
+      flex: 2 1 900px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 900px;
+      min-width: 340px;
+      width: 100%;
+    }
+    .cemetery-slider-container {
+      width: 100%;
+      height: 420px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.20);
+      background: #222;
+      margin-bottom: 0.7rem;
+    }
+    .cemetery-slider-track {
+      display: flex;
+      transition: transform 0.5s;
+      width: 100%;
+      height: 100%;
+    }
+    .cemetery-slider-image {
+      min-width: 100%;
+      height: 420px;
+      object-fit: cover;
+      background: #111;
+      user-select: none;
+    }
+    .cemetery-slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(20,20,20,0.7);
+      color: gold;
+      border: none;
+      font-size: 1.3rem;
+      padding: 0 0.5rem;
+      cursor: pointer;
+      z-index: 2;
+      border-radius: 50%;
+      transition: background 0.2s;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cemetery-slider-btn svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+      fill: gold;
+    }
+    .cemetery-slider-btn:hover {
+      background: rgba(20,20,20,0.95);
+    }
+    .cemetery-slider-btn.left { left: 14px; }
+    .cemetery-slider-btn.right { right: 14px; }
+    .cemetery-slider-dots {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+    }
+    .cemetery-slider-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #888;
+      opacity: 0.6;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .cemetery-slider-dot.active {
+      background: gold;
+      opacity: 1;
+    }
+    @media (max-width: 1200px) {
+      .cemetery-section { flex-direction: column; align-items: stretch; }
+      .cemetery-slider-block { max-width: 100%; width: 100%; }
+      .cemetery-slider-container { height: 240px; }
+      .cemetery-slider-image { height: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  
+  <nav class="main-nav">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="nav-logo"><img src="images/logo.svg" alt="Логотип" class="nav-logo-img"> Спокойствие</a>
+      <div class="nav-menu">
+        <a href="gallery.html">Надгробия</a>
+        <a href="wreaths.html">Венки</a>
+        <a href="contacts.html">Контакты</a>
+        <a href="cemeteries.html">Кладбища</a>
+        <a href="order.html">Заказ</a>
+        <a href="prayers/prayers.html">Молитвы</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Кладбища Санкт-Петербурга</h1>
+
+    <!-- Смоленское кладбище -->
+    <section class="cemetery-section">
+      <div class="cemetery-desc">
+        <div class="cemetery-title">Смоленское кладбище</div>
+        Одно из старейших кладбищ Санкт-Петербурга, основано в XVIII веке. Здесь покоятся многие известные деятели культуры, науки и искусства. На территории находится Смоленская церковь, памятники архитектуры и уникальные надгробия.
+      </div>
+      <div class="cemetery-slider-block">
+        <div class="cemetery-slider-container">
+          <button class="cemetery-slider-btn left" id="smolenskyPrev" aria-label="Назад">
+            <svg viewBox="0 0 24 24"><path d="M15.5 19.5L9 12l6.5-7.5"/></svg>
+          </button>
+          <div class="cemetery-slider-track" id="smolenskyTrack">
+            <img src="images/cladb1.png" alt="Смоленское кладбище 1" class="cemetery-slider-image">
+            <img src="images/cladb2.png" alt="Смоленское кладбище 2" class="cemetery-slider-image">
+            <img src="images/cladb3.png" alt="Смоленское кладбище 3" class="cemetery-slider-image">
+          </div>
+          <button class="cemetery-slider-btn right" id="smolenskyNext" aria-label="Вперёд">
+            <svg viewBox="0 0 24 24"><path d="M8.5 4.5L15 12l-6.5 7.5"/></svg>
+          </button>
+          <div class="cemetery-slider-dots" id="smolenskyDots"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Волковское кладбище -->
+    <section class="cemetery-section">
+      <div class="cemetery-desc">
+        <div class="cemetery-title">Волковское православное кладбище</div>
+        Основано в 1740-х годах, известно как место захоронения многих выдающихся писателей, учёных, артистов. Здесь находится знаменитая Некрополь мастеров искусств, а также старинные часовни и памятники.
+      </div>
+      <div class="cemetery-slider-block">
+        <div class="cemetery-slider-container">
+          <button class="cemetery-slider-btn left" id="volkovskyPrev" aria-label="Назад">
+            <svg viewBox="0 0 24 24"><path d="M15.5 19.5L9 12l6.5-7.5"/></svg>
+          </button>
+          <div class="cemetery-slider-track" id="volkovskyTrack">
+            <img src="images/cladb4.png" alt="Волковское кладбище 1" class="cemetery-slider-image">
+            <img src="images/Cladb5.png" alt="Волковское кладбище 2" class="cemetery-slider-image">
+            <img src="images/Cladb6.png" alt="Волковское кладбище 3" class="cemetery-slider-image">
+          </div>
+          <button class="cemetery-slider-btn right" id="volkovskyNext" aria-label="Вперёд">
+            <svg viewBox="0 0 24 24"><path d="M8.5 4.5L15 12l-6.5 7.5"/></svg>
+          </button>
+          <div class="cemetery-slider-dots" id="volkovskyDots"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Серафимовское кладбище -->
+    <section class="cemetery-section">
+      <div class="cemetery-desc">
+        <div class="cemetery-title">Серафимовское кладбище</div>
+        Одно из крупнейших кладбищ Санкт-Петербурга, основано в начале XX века. Здесь захоронены герои войны, выдающиеся учёные, деятели искусства и спорта. На территории расположены мемориалы и памятные знаки.
+      </div>
+      <div class="cemetery-slider-block">
+        <div class="cemetery-slider-container">
+          <button class="cemetery-slider-btn left" id="serafimovskyPrev" aria-label="Назад">
+            <svg viewBox="0 0 24 24"><path d="M15.5 19.5L9 12l6.5-7.5"/></svg>
+          </button>
+          <div class="cemetery-slider-track" id="serafimovskyTrack">
+            <img src="images/Cladb7.png" alt="Серафимовское кладбище 1" class="cemetery-slider-image">
+            <img src="images/cladb8.png" alt="Серафимовское кладбище 2" class="cemetery-slider-image">
+            <img src="images/cladb9.png" alt="Серафимовское кладбище 3" class="cemetery-slider-image">
+          </div>
+          <button class="cemetery-slider-btn right" id="serafimovskyNext" aria-label="Вперёд">
+            <svg viewBox="0 0 24 24"><path d="M8.5 4.5L15 12l-6.5 7.5"/></svg>
+          </button>
+          <div class="cemetery-slider-dots" id="serafimovskyDots"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-logo-wrap">
+      <img src="images/logo.svg" alt="Логотип" class="footer-logo">
+    </div>
+    © 2025 Спокойствие
+  </footer>
+
+  <script src="js/particles.min.js"></script>
+  <script>
+    particlesJS.load('particles-js', 'js/particles-config.json');
+  </script>
+  <script>
+    // Смоленское слайдер
+    (function() {
+      const track = document.getElementById('smolenskyTrack');
+      const images = track.querySelectorAll('.cemetery-slider-image');
+      const prevBtn = document.getElementById('smolenskyPrev');
+      const nextBtn = document.getElementById('smolenskyNext');
+      const dotsContainer = document.getElementById('smolenskyDots');
+      let current = 0;
+      function updateSlider() {
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dotsContainer.querySelectorAll('.cemetery-slider-dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === current);
+        });
+      }
+      function goTo(idx) {
+        current = (idx + images.length) % images.length;
+        updateSlider();
+      }
+      prevBtn.onclick = () => goTo(current - 1);
+      nextBtn.onclick = () => goTo(current + 1);
+      images.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'cemetery-slider-dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goTo(i);
+        dotsContainer.appendChild(dot);
+      });
+      updateSlider();
+    })();
+    // Волковское слайдер
+    (function() {
+      const track = document.getElementById('volkovskyTrack');
+      const images = track.querySelectorAll('.cemetery-slider-image');
+      const prevBtn = document.getElementById('volkovskyPrev');
+      const nextBtn = document.getElementById('volkovskyNext');
+      const dotsContainer = document.getElementById('volkovskyDots');
+      let current = 0;
+      function updateSlider() {
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dotsContainer.querySelectorAll('.cemetery-slider-dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === current);
+        });
+      }
+      function goTo(idx) {
+        current = (idx + images.length) % images.length;
+        updateSlider();
+      }
+      prevBtn.onclick = () => goTo(current - 1);
+      nextBtn.onclick = () => goTo(current + 1);
+      images.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'cemetery-slider-dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goTo(i);
+        dotsContainer.appendChild(dot);
+      });
+      updateSlider();
+    })();
+    // Серафимовское слайдер
+    (function() {
+      const track = document.getElementById('serafimovskyTrack');
+      const images = track.querySelectorAll('.cemetery-slider-image');
+      const prevBtn = document.getElementById('serafimovskyPrev');
+      const nextBtn = document.getElementById('serafimovskyNext');
+      const dotsContainer = document.getElementById('serafimovskyDots');
+      let current = 0;
+      function updateSlider() {
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dotsContainer.querySelectorAll('.cemetery-slider-dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === current);
+        });
+      }
+      function goTo(idx) {
+        current = (idx + images.length) % images.length;
+        updateSlider();
+      }
+      prevBtn.onclick = () => goTo(current - 1);
+      nextBtn.onclick = () => goTo(current + 1);
+      images.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'cemetery-slider-dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goTo(i);
+        dotsContainer.appendChild(dot);
+      });
+      updateSlider();
+    })();
+  </script>
+</body>
+</html>
