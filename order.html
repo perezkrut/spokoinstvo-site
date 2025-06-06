@@ -25,7 +25,7 @@
 
   <main class="container">
     <h1>Оформление заказа</h1>
-    <form id="orderForm" class="order-form" action="https://formsubmit.co/el/verify" method="POST" autocomplete="off">
+    <form id="orderForm" class="order-form" action="https://formsubmit.co/el/verify" method="POST">
       <input type="hidden" name="_subject" value="Новая заявка с сайта Спокойствие">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="false">
@@ -67,54 +67,6 @@
   <script src="js/script.js"></script>
   <script>
     particlesJS.load('particles-js', 'js/particles-config.json');
-  </script>
-  <script>
-    const form = document.getElementById('orderForm');
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const submitButton = form.querySelector('button[type="submit"]');
-        submitButton.disabled = true;
-        submitButton.textContent = 'Отправка...';
-        
-        const formData = new FormData(form);
-        
-        // Добавляем отладочную информацию
-        console.log('Отправка формы на:', form.action);
-        for (let pair of formData.entries()) {
-          console.log(pair[0] + ': ' + pair[1]);
-        }
-
-        fetch(form.action, {
-          method: 'POST',
-          body: formData,
-          headers: { 
-            'Accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded'
-          }
-        })
-        .then(response => {
-          console.log('Статус ответа:', response.status);
-          return response.text().then(text => {
-            console.log('Ответ сервера:', text);
-            if (response.ok) {
-              alert('Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
-              form.reset();
-            } else {
-              throw new Error('Ошибка сервера: ' + response.status + '\n' + text);
-            }
-          });
-        })
-        .catch((error) => {
-          console.error('Ошибка отправки формы:', error);
-          alert('Ошибка при отправке. Попробуйте позже или свяжитесь по телефону.\n\nДетали ошибки: ' + error.message);
-        })
-        .finally(() => {
-          submitButton.disabled = false;
-          submitButton.textContent = 'Отправить заявку';
-        });
-      });
-    }
   </script>
 </body>
 </html>
