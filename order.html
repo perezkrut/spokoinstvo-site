@@ -11,7 +11,9 @@
   <!-- Навигация -->
   <nav class="main-nav">
     <div class="container nav-wrapper">
-      <a href="index.html" class="nav-logo"><img src="images/logo.svg" alt="Логотип" class="nav-logo-img"> Спокойствие</a>
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.svg" alt="Логотип" class="nav-logo-img"> Спокойствие
+      </a>
       <div class="nav-menu">
         <a href="gallery.html">Надгробия</a>
         <a href="wreaths.html">Венки</a>
@@ -25,12 +27,13 @@
 
   <main class="container">
     <h1>Оформление заказа</h1>
-   <form class="order-form" action="https://formsubmit.co/el/duvoyu" method="POST">
-    <input type="hidden" name="_subject" value="Новая заявка с сайта Спокойствие">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_autoresponse" value="Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.">
-    <input type="hidden" name="_next" value="https://perezkrut.github.io/spokoinstvo-site/index.html">
+    <!-- Добавлен target для отправки формы в скрытый iframe -->
+    <form id="orderForm" class="order-form" action="https://formsubmit.co/el/duvoyu" method="POST" target="hidden_iframe">
+      <input type="hidden" name="_subject" value="Новая заявка с сайта Спокойствие">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_autoresponse" value="Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.">
+      <input type="hidden" name="_next" value="https://perezkrut.github.io/spokoinstvo-site/index.html">
       <label>
         <span>ФИО:</span>
         <input type="text" name="name" placeholder="Иванов Иван" required>
@@ -54,6 +57,8 @@
       </label>
       <button type="submit" class="btn btn-primary">Отправить заявку</button>
     </form>
+    <!-- Скрытый iframe для отправки формы -->
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
   </main>
 
   <footer>
@@ -67,6 +72,25 @@
   <script src="js/script.js"></script>
   <script>
     particlesJS.load('particles-js', 'js/particles-config.json');
+  </script>
+
+  <script>
+    const form = document.getElementById('orderForm');
+    const redirectUrl = 'https://perezkrut.github.io/spokoinstvo-site/index.html';
+    let redirectTimeout;
+
+    form.addEventListener('submit', () => {
+      // Запускаем таймер на 5 секунд
+      redirectTimeout = setTimeout(() => {
+        window.location.href = redirectUrl;
+      }, 5000);
+    });
+
+    // Если iframe загрузится (ответ от formsubmit), отменяем таймер и сразу редиректим
+    document.querySelector('iframe[name="hidden_iframe"]').addEventListener('load', () => {
+      clearTimeout(redirectTimeout);
+      window.location.href = redirectUrl;
+    });
   </script>
 </body>
 </html>
