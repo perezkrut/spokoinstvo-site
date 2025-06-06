@@ -1,55 +1,72 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Оформление заказа</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <header>
-      <div class="header__wrapper">
-        <div class="header__logo">
-          <a href="index.html"><img src="img/logo.png" alt="Логотип" /></a>
-        </div>
-        <nav>
-          <ul class="header__nav">
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="index.html#catalog">Каталог</a></li>
-            <li><a href="index.html#about">О нас</a></li>
-            <li><a href="index.html#contacts">Контакты</a></li>
-          </ul>
-        </nav>
+<head>
+  <meta charset="UTF-8" />
+  <title>Заказ услуги</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <!-- Навигация -->
+  <nav class="main-nav">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="nav-logo"><img src="images/logo.svg" alt="Логотип" class="nav-logo-img"> Спокойствие</a>
+      <div class="nav-menu">
+        <a href="gallery.html">Надгробия</a>
+        <a href="wreaths.html">Венки</a>
+        <a href="contacts.html">Контакты</a>
+        <a href="cemeteries.html">Кладбища</a>
+        <a href="order.html">Заказ</a>
+        <a href="prayers/prayers.html">Молитвы</a>
       </div>
-    </header>
+    </div>
+  </nav>
 
-    <main>
-      <section class="order">
-        <div class="container">
-          <h1>Оформление заказа</h1>
-          <form action="https://formsubmit.co/swaworkatel@gmail.com" method="POST" class="form">
-            <input type="text" name="name" placeholder="Ваше имя" required />
-            <input type="tel" name="phone" placeholder="Телефон" required />
-            <input type="text" name="address" placeholder="Адрес доставки" />
+  <main class="container">
+    <h1>Оформление заказа</h1>
+    <form class="order-form" action="https://formsubmit.co/el/duvoyu" method="POST">
+      <input type="hidden" name="_subject" value="Новая заявка с сайта Спокойствие">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://perezkrut.github.io/spokoinstvo-site/index.html">
+      <input type="hidden" name="_autoresponse" value="Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.">
+      <label>
+        <span>ФИО:</span>
+        <input type="text" name="name" placeholder="Иванов Иван" required>
+      </label>
+      <label>
+        <span>Услуга:</span>
+        <select name="service" required>
+          <option disabled selected>Выберите услугу</option>
+          <option>Похороны</option>
+          <option>Кремация</option>
+          <option>Установка памятника</option>
+        </select>
+      </label>
+      <label>
+        <span>Телефон:</span>
+        <input type="tel" name="phone" placeholder="+7 (___) ___--" required>
+      </label>
+      <label>
+        <span>Комментарий:</span>
+        <textarea name="comment" placeholder="Дополнительная информация..."></textarea>
+      </label>
+      <button type="submit" class="btn btn-primary">Отправить заявку</button>
+    </form>
+  </main>
 
-            <!-- Скрытые поля -->
-            <input type="hidden" name="_subject" value="Новый заказ с сайта Spokoinstvo">
-            <input type="hidden" name="_next" value="https://perezkrut.github.io/spokoinstvo-site/index.html">
-            <input type="hidden" name="_captcha" value="false">
+  <footer>
+    <div class="footer-logo-wrap">
+      <img src="images/logo.svg" alt="Логотип" class="footer-logo">
+    </div>
+    © 2025 Спокойствие
+  </footer>
 
-            <button type="submit">Отправить</button>
-          </form>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container">
-        <p>&copy; 2025 Spokoinstvo. Все права защищены.</p>
-      </div>
-    </footer>
-  </body>
+  <script src="js/particles.min.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    particlesJS.load('particles-js', 'js/particles-config.json');
+  </script>
+</body>
 </html>
