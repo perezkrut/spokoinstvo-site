@@ -25,9 +25,11 @@
 
   <main class="container">
     <h1>Оформление заказа</h1>
-    <form id="orderForm" class="order-form" action="https://formsubmit.co/ajax/swaworkatel@gmail.com" method="POST" autocomplete="off">
+    <form id="orderForm" class="order-form" action="https://formsubmit.co/swaworkatel@gmail.com" method="POST" autocomplete="off">
       <input type="hidden" name="_subject" value="Новая заявка с сайта Спокойствие">
       <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://spokoistvie.ru/thanks.html">
       <label>
         <span>ФИО:</span>
         <input type="text" name="name" placeholder="Иванов Иван" required>
@@ -70,6 +72,10 @@
     if (form) {
       form.addEventListener('submit', function(e) {
         e.preventDefault();
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Отправка...';
+        
         const formData = new FormData(form);
         fetch(form.action, {
           method: 'POST',
@@ -81,11 +87,16 @@
             alert('Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
             form.reset();
           } else {
-            alert('Ошибка при отправке. Попробуйте позже или свяжитесь по телефону.');
+            throw new Error('Ошибка сервера: ' + response.status);
           }
         })
-        .catch(() => {
+        .catch((error) => {
+          console.error('Ошибка отправки формы:', error);
           alert('Ошибка при отправке. Попробуйте позже или свяжитесь по телефону.');
+        })
+        .finally(() => {
+          submitButton.disabled = false;
+          submitButton.textContent = 'Отправить заявку';
         });
       });
     }
